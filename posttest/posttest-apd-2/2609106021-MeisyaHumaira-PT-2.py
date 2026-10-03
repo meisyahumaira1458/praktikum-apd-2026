@@ -14,3 +14,4 @@ print("2 digit nim:", nim)
 print("status bolean (nim < rata-rata):", bolean)
 print("data posisi tengah (indeks 2-4):", posisi_tengah)
 print("total berat akhir (gram):", total_berat_gram)
+
