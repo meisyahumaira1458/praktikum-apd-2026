@@ -1,3 +1,8 @@
+import os
+
+def clear_screen():
+    os.system('cls' if os.name == 'nt' else 'clear')
+
 inventaris = [
     ["CAM01", "Canon EOS 80D", "Kamera DSLR", 150000, "Tersedia"],
     ["CAM02", "Sony A6400", "Kamera Mirrorless", 175000, "Dipinjam"],
@@ -69,11 +74,16 @@ while True:
 
                             if pilih_status == "1":
                                 item[4] = "Tersedia"
+                                print("Berhasil! Status alat telah diperbarui menjadi Tersedia.")
                             elif pilih_status == "2":
                                 item[4] = "Dipinjam"
+                                print("Berhasil! Status alat telah diperbarui menjadi Dipinjam.")
                             elif pilih_status == "3":
                                 item[4] = "Rusak"
-                            print("Berhasil! Status alat telah diperbarui.")
+                                print("Berhasil! Status alat telah diperbarui menjadi Rusak.")
+                            else:
+                                print("Pilihan status tidak valid! Gagal memperbarui status.")
+                            break
                             
                     if not ketemu:
                         print("Maaf, ID Alat tidak ditemukan.")
@@ -89,14 +99,16 @@ while True:
                     for i in range(len(inventaris)):
                         if inventaris[i][0] == id_hapus:
                             ketemu = True
-
-                            del inventaris[i]
-                            print("Berhasil! Data alat yang rusak telah dihapus.")
+                            
+                            if inventaris[i][4] == "Rusak":
+                                del inventaris[i]
+                                print("Berhasil! Data alat yang rusak telah dihapus.")
+                            else:
+                                print(f"Gagal menghapus! Alat ini berstatus '{inventaris[i][4]}'. Hanya alat dengan status 'Rusak' yang dapat dihapus.")
                             break
 
                     if not ketemu:
                         print("Maaf, ID Alat tidak ditemukan.")
-
                 elif menu_admin == "5":
                     print("\n--- DAFTAR PERMINTAAN PEMINJAMAN ---")
                     for req in peminjaman:
